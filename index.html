@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funda ❤️ Ömer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for romantic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe4e9 0%, #ffcbd5 100%);
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        /* Romantik İsim Başlığı Fontu ve Parlama Efekti */
+        .names-title {
+            font-family: 'Great Vibes', cursive;
+            color: #d81b60;
+            text-shadow: 0 0 15px rgba(233, 30, 99, 0.3),
+                         0 0 30px rgba(233, 30, 99, 0.2);
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 15px rgba(233, 30, 99, 0.3),
+                             0 0 25px rgba(233, 30, 99, 0.2);
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 0 0 25px rgba(233, 30, 99, 0.6),
+                             0 0 45px rgba(233, 30, 99, 0.4);
+                transform: scale(1.03);
+            }
+        }
+
+        /* Canvas Kaplaması */
+        #rainCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* İnteraktif Kutu / Buton Stilleri */
+        .magic-box {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .magic-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.4),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.7);
+        }
+
+        .magic-box:active {
+            transform: translateY(2px) scale(0.98);
+        }
+
+        /* Kart Konteyneri Cam Efekti (Glassmorphism) */
+        .card-container {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 40px rgba(216, 27, 96, 0.12);
+        }
+
+        /* Tıklama Sonrası Şerit/Pop Efektleri */
+        .pop-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatAndFade 1.2s forwards cubic-bezier(0.215, 0.61, 0.355, 1);
+            z-index: 30;
+        }
+
+        @keyframes floatAndFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+            }
+            50% {
+                opacity: 0.9;
+                transform: translate(-50%, -100px) scale(1.4) rotate(15deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -180px) scale(1.8) rotate(-15deg);
+            }
+        }
+    </style>
+</head>
+<body class="w-screen h-screen flex items-center justify-center relative">
+
+    <!-- Yağmur Efekti İçin Canvas -->
+    <canvas id="rainCanvas"></canvas>
+
+    <!-- Ana İçerik Kartı -->
+    <main class="relative z-20 flex flex-col items-center justify-center p-6 md:p-12 m-4 rounded-3xl card-container max-w-lg w-full text-center transition-all duration-500">
+        
+        <!-- Üst Kalp İkonu -->
+        <div class="mb-2 text-red-500 text-3xl md:text-4xl animate-bounce">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+
+        <!-- İsimler -->
+        <h1 class="names-title text-6xl md:text-8xl my-2 leading-tight tracking-wide">
+            Funda & Ömer
+        </h1>
+
+        <!-- Küçük Açıklama Yazısı -->
+        <p class="text-pink-900 text-sm md:text-base font-light mb-8 opacity-90">
+            Sonsuz bir aşkın ve tatlı anların hikayesi ✨
+        </p>
+
+        <!-- İnteraktif Kutu / Buton -->
+        <button id="loveButton" class="magic-box text-white font-semibold px-8 py-4 rounded-2xl flex items-center gap-3 text-lg md:text-xl cursor-pointer group outline-none">
+            <span class="text-2xl group-hover:scale-125 transition-transform duration-300">🍓</span>
+            <span>Çilek & Kalp Yağmuru</span>
+            <span class="text-2xl group-hover:scale-125 transition-transform duration-300">💖</span>
+        </button>
+
+        <!-- Alt Bilgi / GitHub Footer -->
+        <div class="mt-8 text-xs text-pink-800 opacity-70 flex items-center gap-1.5 font-medium">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub Pages İle Sevgiyle Yayınlandı</span>
+        </div>
+    </main>
+
+    <script>
+        // Canvas Kurulumu
+        const canvas = document.getElementById('rainCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const strawberryEmoji = '🍓';
+        const heartEmojis = ['❤️', '💖', '💕', '💗', '🍓'];
+
+        // Parçacık Sınıfı
+        class Particle {
+            constructor(isSpecialRain = false) {
+                this.reset(isSpecialRain);
+            }
+
+            reset(isSpecialRain = false) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * -height - 20; // Ekranın üstünden başlasın
+                this.size = Math.random() * 18 + (isSpecialRain ? 24 : 16); // Boyut
+                this.speedY = Math.random() * 2 + (isSpecialRain ? 3 : 1.2); // Düşme hızı
+                this.speedX = Math.sin(Math.random() * Math.PI) * 1.5; // Hafif sağa sola sallanma
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                
+                // Normal zamanlarda çilek, butona basıldığında karışık kalp ve çilek
+                if (isSpecialRain) {
+                    this.symbol = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                } else {
+                    this.symbol = strawberryEmoji;
+                }
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y / 30) * 0.8 + this.speedX;
+                this.rotation += this.rotationSpeed;
+
+                // Ekranın altına indiğinde tekrar yukarı sıfırla
+                if (this.y > height + 40) {
+                    this.reset(false);
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.font = `${this.size}px serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.symbol, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        // İlk parçacıkları oluştur (Sürekli yağan tatlı çilekler)
+        const particles = [];
+        const initialCount = 35;
+
+        for (let i = 0; i < initialCount; i++) {
+            const p = new Particle();
+            p.y = Math.random() * height; // Başlangıçta ekrana dağılsınlar
+            particles.push(p);
+        }
+
+        // Animasyon Döngüsü
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Window yüklendiğinde animasyonu başlat
+        window.onload = () => {
+            animate();
+        };
+
+        // Buton Etkileşimi ve Yağmuru Tetikleme
+        const loveButton = document.getElementById('loveButton');
+
+        loveButton.addEventListener('click', (e) => {
+            // 1. Ekstra Çilek ve Kalp Yağmuru Ekle
+            const extraCount = 45;
+            for (let i = 0; i < extraCount; i++) {
+                setTimeout(() => {
+                    particles.push(new Particle(true));
+                }, i * 40); // Hafif zaman aralığıyla insinler
+            }
+
+            // Fazla birikmeyi önlemek için belli bir süre sonra ekstra parçacıkları azalt
+            setTimeout(() => {
+                if (particles.length > initialCount) {
+                    particles.splice(initialCount, extraCount);
+                }
+            }, 10000);
+
+            // 2. Tıklama Yerinde Kalp Pop-up Efekti Oluşturma
+            createHeartPop(e.clientX, e.clientY);
+        });
+
+        // Tıklama noktasından uçuşan kalp pop efektleri
+        function createHeartPop(x, y) {
+            const heartCount = 10;
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'pop-heart text-2xl md:text-3xl';
+                heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                
+                const offsetX = (Math.random() - 0.5) * 100;
+                const offsetY = (Math.random() - 0.5) * 50;
+
+                heart.style.left = `${x + offsetX}px`;
+                heart.style.top = `${y + offsetY}px`;
+
+                document.body.appendChild(heart);
+
+                // Animasyon bitince DOM'dan kaldır
+                setTimeout(() => {
+                    heart.remove();
+                }, 1200);
+            }
+        }
+    </script>
+</body>
+</html>
